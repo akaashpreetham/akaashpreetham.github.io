@@ -1,0 +1,134 @@
+html{
+	background-color: rgb(70,159,232);
+	color: white;
+}
+#DP{
+	width:20%;
+	display: block;
+	margin: auto;
+	border-radius: 20px;
+	border: 2px solid white;
+	transition: width 2s, height 2s;
+}
+#DP:hover{
+	width:30%;
+}
+#AM{
+	text-decoration: underline;
+	text-align: center;
+	text-shadow: 0.5px 0 1px white;
+}
+#Content{
+	position: relative;
+	margin:auto;
+	font-weight: bold;
+	text-align: center;
+	font-size: 125%;
+	width:50%;
+}
+div{
+	position: fixed;
+	right:0;
+	top:0;
+	width:20%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+}
+#AP{
+	position: fixed;
+	right: 0%;
+	width:20%;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-align: center;
+	background-color: rgba(0,0,0,0.5);
+	text-shadow: 1px 1px 2px rgba(256,256,256,0.4);
+}
+#CM{
+	position: fixed;
+	right: 0%;
+	bottom:12%;
+	width:20%;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-align: center;
+	background-color: rgba(0,0,0,0.5);
+}
+#FB,#Google{
+	position: fixed;
+	bottom: 2%;
+	width:5%;
+	transition: width 1s, height 1s;
+}
+#FB{
+	right:11%;
+}
+#FB:hover{
+	width:6%;
+}
+#Google{
+	right:4%;
+}
+#Google:hover{
+	width:6%;
+}
+#Interest{
+	position: fixed;
+	right: 0%;
+	top:18%;
+	width: 20%;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	text-align: center;
+	background-color: rgba(0,0,0,0.5);
+	text-shadow: 1px 1px 2px rgba(256,256,256,0.4);
+}
+#AL{
+	position: fixed;
+	width:20%;
+	border: none;
+	right:0%;
+	top: 22%;
+}
+#CSK{
+	position: fixed;
+	width:20%;
+	border: none;
+	right:0%;
+	top:47%;
+}
+#Bio{
+	position: fixed;
+	padding-left: 0.5%;
+	width:20%;
+	top:7%;
+	text-align: left;
+}
+@keyframes movement{
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+canvas{
+	position: absolute;
+ 	display: inline-block;
+    top: 40%;
+    left: 6%;
+    animation-name: movement;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    transform-origin: top;
+}
+#Web{
+	position: absolute;
+	left:12.7%;
+	top:0%;
+	border-right: 1px solid black;
+    height: 40%;
+}
