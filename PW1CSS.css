@@ -1,5 +1,5 @@
 html{
-	background-color: rgb(70,159,232);
+	background-color:rgb(70,159,232);
 	color: white;
 }
 #DP{
@@ -89,6 +89,7 @@ div{
 	border: none;
 	right:0%;
 	top: 22%;
+	transition: 
 }
 #CSK{
 	position: fixed;
@@ -131,4 +132,8 @@ canvas{
 	top:0%;
 	border-right: 1px solid black;
     height: 40%;
+}
+#Game{
+	position: fixed;
+	bottom:1%;
 }
