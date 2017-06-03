@@ -6,14 +6,17 @@
 	</head>
 	
 	<body>
+
+	 	<!-- Defining the elements-->
+	
 		<div class="Slot" id="A">
-			<div id="NA">0</div>
+			<div class="N" id="NA">0</div>
 		</div>
 		<div class="Slot" id="B">
-			<div id="NB">0</div>
+			<div class="N" id="NB">0</div>
 		</div>
 		<div class="Slot" id="C">
-			<div id="NC">0</div>
+			<div class="N" id="NC">0</div>
 		</div>
 		<div>
 			<button id="Btn">SPIN</button>
@@ -21,110 +24,79 @@
 		<h1 id="Title">JACKPOT</h1>
 		<h1 id="Msg" style="color: white;"></h1>
 		<h2>Click on the Spider to go back</h2>
+		<h1 id="Score">Score: 000</h1>
+		<audio src="Cha Ching Cash Register Sound Effect-[AudioTrimmer.com].mp3" id="CC"></audio>
+		<audio src="Applause.mp3" id="Applause"></audio>
+
+		<!-- Defining the functions-->
+
 		<script type="text/javascript">
+			var begin=prompt("Enter a 3 digit number to start your spin with: ","000");
+			document.getElementById("NA").innerHTML=Math.floor(begin/100);
+			document.getElementById("NB").innerHTML=Math.floor(begin/10)%10;
+			document.getElementById("NC").innerHTML=begin%10;
 			var bn=document.querySelector('button');
+			var aud1=document.getElementById("CC");
+			var aud2=document.getElementById("Applause");
 			var flag=0;
-			var numa,numb,numc;
+			var score=0;
+			var i=0;
+			var arr=new Array(1,2,3);
+			var elemA = document.getElementById("NA");
+			var elemB = document.getElementById("NB");
+			var elemC = document.getElementById("NC");
 			bn.addEventListener("click",function(){
-				myMoveC();
-				myMoveB();
-				myMoveA();
-				if(flag==1)
+				aud1.play();
+				generate(elemC);
+				generate(elemB);
+				generate(elemA);
+				if(flag==1){
 					restart();
+				}
 				check();
-				
 			});
-				function myMoveA() {
-	  				var elem = document.getElementById("NA");   
+				function generate(elem) {   
 	  				var pos = 0;
-	  				var a=0;
-	  				var n1=Math.floor(Math.random()*10);
-	  				numa=n1;
-	 				function frame() {
-	   					if(a==n1){
+	  				var a=elem.innerHTML;
+	  				var n=Math.floor(Math.random()*10);
+	  				arr[i]=n;
+	  				i++;
+	 				function roll() {
+	   					if(a==n){
 							pos++;
 							if(pos<=20){
-								requestAnimationFrame(frame);
+								requestAnimationFrame(roll);
 							}
 							elem.style.top=pos+"%";
 							elem.innerHTML=a;
 						}  
 						else{
 							pos++;
-							if((pos*2)>=100){
+							if((pos*10)>=100){
 								pos=0;
-								a++;
+								if(a==9){
+									a=0;
+								}
+								else{
+									a++;
+								}
 							}
-							elem.style.top=(pos*2)+"%";
+							elem.style.top=(pos*10)+"%";
 							elem.innerHTML=a;
-							requestAnimationFrame(frame);
+							requestAnimationFrame(roll);
 						}
 	  				}
-	  			requestAnimationFrame(frame);
-				}	
-				function myMoveB() {
-	  				var elem = document.getElementById("NB");   
-	  				var pos = 0;
-	  				var a=0;
-	  				var n2=Math.floor(Math.random()*10);
-	  				numb=n2;
-	 				function frame() {
-	   					if(a==n2){
-							pos++;
-							if(pos<=20){
-								requestAnimationFrame(frame);
-							}
-							elem.style.top=pos+"%";
-							elem.innerHTML=a;
-						}  
-						else{
-							pos++;
-							if((pos*2)>=100){
-								pos=0;
-								a++;
-							}
-							elem.style.top=(pos*2)+"%";
-							elem.innerHTML=a;
-							requestAnimationFrame(frame);
-						}
-	  				}
-	  			requestAnimationFrame(frame);
-				}	
-				function myMoveC() {
-	  				var elem = document.getElementById("NC");   
-	  				var pos = 0;
-	  				var a=0;
-	  				var n3=Math.floor(Math.random()*10);
-	  				numc=n3;
-	 				function frame() {
-	   					if(a==n3){
-							pos++;
-							if(pos<=20){
-								requestAnimationFrame(frame);
-							}
-							elem.style.top=pos+"%";
-							elem.innerHTML=a;
-						}  
-						else{
-							pos++;
-							if((pos*2)>=100){
-								pos=0;
-								a++;
-							}
-							elem.style.top=(pos*2)+"%";
-							elem.innerHTML=a;
-							requestAnimationFrame(frame);
-						}
-	  				}
-	  			requestAnimationFrame(frame);
-				}	
+	  			requestAnimationFrame(roll);
+				}
 				function check(){
-					var msg=document.getElementById("Msg");
-					var btn=document.getElementById("Btn");
-					if(numa==numb&&numa==numc){
-						msg.innerHTML="CONGRATULATIONS";
-						btn.innerHTML="RESTART";
+					i=0;
+					if(arr[0]==arr[1]&&arr[0]==arr[2]){
+						document.getElementById("Msg").innerHTML="CONGRATULATIONS";
+						document.getElementById("Btn").innerHTML="RESTART";
+						score+=(arr[2]*100)+(arr[1]*10)+arr[0];
+						document.getElementById("Score").innerHTML="Score: "+score;
 						flag=1;
+						aud2.play();
 					}
 				}
 				function restart(){
