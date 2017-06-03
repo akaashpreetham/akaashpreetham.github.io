@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JACKPOT</title>
+		<link rel="stylesheet" href="Jackpot.css">
+	</head>
+	
+	<body>
+		<div class="Slot" id="A">
+			<div id="NA">0</div>
+		</div>
+		<div class="Slot" id="B">
+			<div id="NB">0</div>
+		</div>
+		<div class="Slot" id="C">
+			<div id="NC">0</div>
+		</div>
+		<div>
+			<button id="Btn">SPIN</button>
+		</div>
+		<h1 id="Title">JACKPOT</h1>
+		<h1 id="Msg" style="color: white;"></h1>
+		<h2>Click on the Spider to go back</h2>
+		<script type="text/javascript">
+			var bn=document.querySelector('button');
+			var flag=0;
+			var numa,numb,numc;
+			bn.addEventListener("click",function(){
+				myMoveC();
+				myMoveB();
+				myMoveA();
+				if(flag==1)
+					restart();
+				check();
+				
+			});
+				function myMoveA() {
+	  				var elem = document.getElementById("NA");   
+	  				var pos = 0;
+	  				var a=0;
+	  				var n1=Math.floor(Math.random()*10);
+	  				numa=n1;
+	 				function frame() {
+	   					if(a==n1){
+							pos++;
+							if(pos<=20){
+								requestAnimationFrame(frame);
+							}
+							elem.style.top=pos+"%";
+							elem.innerHTML=a;
+						}  
+						else{
+							pos++;
+							if((pos*2)>=100){
+								pos=0;
+								a++;
+							}
+							elem.style.top=(pos*2)+"%";
+							elem.innerHTML=a;
+							requestAnimationFrame(frame);
+						}
+	  				}
+	  			requestAnimationFrame(frame);
+				}	
+				function myMoveB() {
+	  				var elem = document.getElementById("NB");   
+	  				var pos = 0;
+	  				var a=0;
+	  				var n2=Math.floor(Math.random()*10);
+	  				numb=n2;
+	 				function frame() {
+	   					if(a==n2){
+							pos++;
+							if(pos<=20){
+								requestAnimationFrame(frame);
+							}
+							elem.style.top=pos+"%";
+							elem.innerHTML=a;
+						}  
+						else{
+							pos++;
+							if((pos*2)>=100){
+								pos=0;
+								a++;
+							}
+							elem.style.top=(pos*2)+"%";
+							elem.innerHTML=a;
+							requestAnimationFrame(frame);
+						}
+	  				}
+	  			requestAnimationFrame(frame);
+				}	
+				function myMoveC() {
+	  				var elem = document.getElementById("NC");   
+	  				var pos = 0;
+	  				var a=0;
+	  				var n3=Math.floor(Math.random()*10);
+	  				numc=n3;
+	 				function frame() {
+	   					if(a==n3){
+							pos++;
+							if(pos<=20){
+								requestAnimationFrame(frame);
+							}
+							elem.style.top=pos+"%";
+							elem.innerHTML=a;
+						}  
+						else{
+							pos++;
+							if((pos*2)>=100){
+								pos=0;
+								a++;
+							}
+							elem.style.top=(pos*2)+"%";
+							elem.innerHTML=a;
+							requestAnimationFrame(frame);
+						}
+	  				}
+	  			requestAnimationFrame(frame);
+				}	
+				function check(){
+					var msg=document.getElementById("Msg");
+					var btn=document.getElementById("Btn");
+					if(numa==numb&&numa==numc){
+						msg.innerHTML="CONGRATULATIONS";
+						btn.innerHTML="RESTART";
+						flag=1;
+					}
+				}
+				function restart(){
+						document.getElementById("Btn").innerHTML="SPIN";
+						document.getElementById("Msg").innerHTML="";
+						flag=0;
+				}
+		</script>
+		<a href="index.html"><canvas></canvas></a>
+		<script type="text/javascript">
+				var a=document.querySelector("canvas");
+				var s=a.getContext("2d");
+				s.beginPath();
+				s.moveTo(75,0);
+				s.lineTo(45,30);
+				s.lineTo(45,60);
+				s.lineTo(75,90);
+				s.lineTo(105,90);
+				s.lineTo(135,60);
+				s.lineTo(135,30);
+				s.lineTo(105,0);
+				s.lineTo(75,0);
+				s.fillStyle="rgb(222,224,226)";
+				s.fill();
+				s.fillRect(80,90,20,10);
+				s.beginPath();
+				s.strokeStyle="rgb(222,224,226)";
+				for(var y=31;y<=60;y+=14){
+					s.moveTo(45,y);
+					s.lineTo(25,y-20);
+					s.lineTo(0,y);
+				}
+				for(var y=31;y<=60;y+=14){
+					s.moveTo(135,y);
+					s.lineTo(155,y-20);
+					s.lineTo(180,y);
+				}
+				s.stroke();
+		</script>
+	</body>
+</html>
